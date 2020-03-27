@@ -1,6 +1,6 @@
 # ofxStepSequencer
 
-openFrameworks addon basic bang step-sequencer manager with tap tempo, internal clock and external MIDI sync with pattern presets manager.
+openFrameworks addon as a basic (bang) step-sequencer manager. Includes tap tempo, internal clock and external MIDI sync with pattern presets manager.
 Mainly based on ofxSequencer from @genekogan, ofxMidi from @danomatika and ofxDawMetro from @castovoid among others.
 
 

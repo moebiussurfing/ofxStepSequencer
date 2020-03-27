@@ -133,7 +133,7 @@ Specially:
 - Improve ofxSequencer integration. I used a lot of workarounds to avoid all my big-skills-limitations. Any help is welcome!
 - Add not only bang/bool types like int or float as the original ofxSequencer can handle. Any collaboration on this will be welcome!
 - Some OSC in/out control.
-
+- Repair little bug that create some rare xml files into presets folder.
 
 
 **PLEASE FEEL FREE TO ADD MODIFICATIONS OR FEATURES AND TO SEND ME PULL REQUESTS. THANKS!**

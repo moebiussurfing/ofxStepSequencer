@@ -109,7 +109,8 @@ https://github.com/bakercp/ofxSerializer
 
 ## About
 
-An addon by MoebiusSurfing.  
+An addon by MoebiusSurfing, 2020.
+Kind of beta state but I decided to make it public. Please post issues or problems to solve that I'll reply.  
 Thanks to developers of all the other addons used, of course.  
 Specially:  
 @genekogan for https://github.com/genekogan/ofxSequencer  
@@ -122,13 +123,13 @@ Specially:
 
 ## TODO:
 
-- Kind of beta state but I decided to make it public. Please post issues or problems to solve that I'll reply.
-- Allow resize pattern step sizes and note amount. (Now is 12 notes and 16 beats)
-- Improve ofxSequencer integration. I used a lot of workarounds to avoid all my big-skills-limitations. Any help is welcome!
-- Add not only bang/bool types like int or float as the original ofxSequencer can handle. Any collaboration on this will be welcome!
-- Some OSC in/out control.
-- Repair little bug that create some rare xml files into presets folder.  
+- Repair BUG original from ofxSequencer where sometimes mouse-clicks are ignored. Any help is welcome!  
+- Allow resize pattern step sizes and note amount. (Now is fixed to 12 notes and 16 beats)  
+- Improve ofxSequencer integration. I used a lot of workarounds to avoid all my big-skills-limitations. Any help is welcome!  
+- Add not only bang/bool types like int or float as the original ofxSequencer can handle. Any help is welcome!  
+- Some OSC in/out control.  
+- Repair little BUG that create some rare xml files into presets folder.  
 
 
-
+<br/>
 **PLEASE FEEL FREE TO ADD MODIFICATIONS OR FEATURES AND TO SEND ME ISSUES/PULL REQUESTS. THANKS!**

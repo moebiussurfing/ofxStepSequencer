@@ -92,8 +92,7 @@ https://github.com/moebiussurfing/ofxGuiExtended2 (fork)
 
 
 Included into the example but not mandatory:  
-Optional to handle window settings between sessions.  
-Check ofApp.h into the example:  
+Optional to handle window settings between sessions:  
 https://github.com/moebiussurfing/ofxWindowApp  
 https://github.com/bakercp/ofxSerializer
 
@@ -112,7 +111,6 @@ https://github.com/bakercp/ofxSerializer
 An addon by MoebiusSurfing.  
 Thanks to developers of all the other addons used, of course.  
 Specially:  
-
 @genekogan for https://github.com/genekogan/ofxSequencer  
 @npisanti for https://github.com/npisanti/ofxGuiPresetSelector  
 @castovoid for https://github.com/castovoid/ofxDawMetro  

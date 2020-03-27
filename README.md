@@ -82,18 +82,12 @@ void ofApp::Changed_SEQ_NOTES(ofAbstractParameter& e)
 
 ## Requeriments
 
-https://github.com/moebiussurfing/ofxSequencer (fork)
-
-https://github.com/moebiussurfing/ofxBeatClock
-
-https://github.com/danomatika/ofxMidi
-
-https://github.com/castovoid/ofxDawMetro
-
-https://github.com/moebiussurfing/ofxPresetDataGrid
-
-https://github.com/2bbb/ofxJsonUtils
-
+https://github.com/moebiussurfing/ofxSequencer (fork)  
+https://github.com/moebiussurfing/ofxBeatClock  
+https://github.com/danomatika/ofxMidi  
+https://github.com/castovoid/ofxDawMetro  
+https://github.com/moebiussurfing/ofxPresetDataGrid  
+https://github.com/2bbb/ofxJsonUtils  
 https://github.com/moebiussurfing/ofxGuiExtended2 (fork)
 
 
@@ -121,14 +115,10 @@ Thanks to developers of all the other addons used, of course.
 
 Specially:
 
-@genekogan for https://github.com/genekogan/ofxSequencer
-
-@npisanti for https://github.com/npisanti/ofxGuiPresetSelector 
-
-@castovoid for https://github.com/castovoid/ofxDawMetro
-
-@frauzufall for https://github.com/frauzufall/ofxGuiExtended
-
+@genekogan for https://github.com/genekogan/ofxSequencer  
+@npisanti for https://github.com/npisanti/ofxGuiPresetSelector  
+@castovoid for https://github.com/castovoid/ofxDawMetro  
+@frauzufall for https://github.com/frauzufall/ofxGuiExtended  
 @transat for GUI theme
 
 
@@ -140,7 +130,7 @@ Specially:
 - Improve ofxSequencer integration. I used a lot of workarounds to avoid all my big-skills-limitations. Any help is welcome!
 - Add not only bang/bool types like int or float as the original ofxSequencer can handle. Any collaboration on this will be welcome!
 - Some OSC in/out control.
-- Repair little bug that create some rare xml files into presets folder.
+- Repair little bug that create some rare xml files into presets folder.  
 
 
 **PLEASE FEEL FREE TO ADD MODIFICATIONS OR FEATURES AND TO SEND ME PULL REQUESTS. THANKS!**

@@ -97,14 +97,10 @@ https://github.com/2bbb/ofxJsonUtils
 https://github.com/moebiussurfing/ofxGuiExtended2 (fork)
 
 
-Included into the example but not mandatory: 
-
-Optional to handle window settings between sessions. 
-
-Check ofApp.h into the example:
-
-https://github.com/moebiussurfing/ofxWindowApp
-
+Included into the example but not mandatory:  
+Optional to handle window settings between sessions.  
+Check ofApp.h into the example:  
+https://github.com/moebiussurfing/ofxWindowApp  
 https://github.com/bakercp/ofxSerializer
 
 

@@ -4,7 +4,7 @@ openFrameworks addon basic bang step-sequencer with tap tempo, external MIDI syn
 
 
 
-## Video
+## Screencast
 
 ![Alt text](/ofxStepSequencer.gif?raw=true "ofxStepSequencer.gif")
 
@@ -21,7 +21,7 @@ openFrameworks addon basic bang step-sequencer with tap tempo, external MIDI syn
 
 Create the example project or your own with OF ProjectGenerator as usual.
 
-Recommended to look the example.
+Recommended to look at the example.
 
 
 ```c++

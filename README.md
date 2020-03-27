@@ -96,7 +96,9 @@ https://github.com/2bbb/ofxJsonUtils
 
 https://github.com/moebiussurfing/ofxGuiExtended2 (fork)
 
-optional: (to hanlde window settings between sessions)
+Included into the example but not mandatory: 
+Optional to hanlde window settings between sessions. 
+Check ofApp.h into the example:
 
 https://github.com/moebiussurfing/ofxWindowApp
 

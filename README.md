@@ -77,7 +77,7 @@ void ofApp::Changed_SEQ_NOTES(ofAbstractParameter& e)
 - Helper tool to clone selected preset to the other next presets of your kit. 
 - Use ctrl + mouse-click to clone preset to the clicked preset position.
 - Helper tools to randomize patterns and clone one bar to all other 3.
-
+- API methods to toggle hide/show gui and some others. Please check into the addon to know more.
 
 
 ## Requeriments
@@ -96,8 +96,11 @@ https://github.com/2bbb/ofxJsonUtils
 
 https://github.com/moebiussurfing/ofxGuiExtended2 (fork)
 
+
 Included into the example but not mandatory: 
-Optional to hanlde window settings between sessions. 
+
+Optional to handle window settings between sessions. 
+
 Check ofApp.h into the example:
 
 https://github.com/moebiussurfing/ofxWindowApp

@@ -99,7 +99,7 @@ https://github.com/bakercp/ofxSerializer
 
 
 
-## Tested system
+## Tested systems
 
 - OF 0.11
 - Visual Studio 2017
@@ -109,17 +109,15 @@ https://github.com/bakercp/ofxSerializer
 
 ## About
 
-An addon by MoebiusSurfing.
-
-Thanks to developers of all the other addons used, of course.
-
-Specially:
+An addon by MoebiusSurfing.  
+Thanks to developers of all the other addons used, of course.  
+Specially:  
 
 @genekogan for https://github.com/genekogan/ofxSequencer  
 @npisanti for https://github.com/npisanti/ofxGuiPresetSelector  
 @castovoid for https://github.com/castovoid/ofxDawMetro  
 @frauzufall for https://github.com/frauzufall/ofxGuiExtended  
-@transat for GUI theme
+@transat for GUI theme  
 
 
 

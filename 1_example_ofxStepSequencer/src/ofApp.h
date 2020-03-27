@@ -35,9 +35,6 @@ public:
 
     //--
 
-    // local notes_params to trig bools generated from sequencer
-    ofParameter<bool> notes_params[NUM_SEQ_NOTES];
-
 	//CALLBACKS MODE B
 	//ofParameterGroup notes_paramsGroup;
     //void Changed_notes_paramsGroup(ofAbstractParameter &e);
@@ -46,6 +43,9 @@ public:
     ofxGuiContainer* gui_Notes;
 
     //--
+
+    // local notes_params to trig bang/bools trigged from sequencer
+    ofParameter<bool> notes_params[NUM_SEQ_NOTES];
 
     //callback listener for inside class ofxStepSequencer
     void Changed_SEQ_NOTES(ofAbstractParameter& e);

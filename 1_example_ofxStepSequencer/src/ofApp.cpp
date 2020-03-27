@@ -50,8 +50,8 @@ void ofApp::setup()
 	{
 		string nStr = ofToString(col + 1);
 		notes_params[col].set(nStr, false);
-		//notes_paramsGroup.add(notes_params[col]);//CALLBACKS MODE B
 		gui_Notes->add<ofxGuiToggle>(notes_params[col]);
+		//notes_paramsGroup.add(notes_params[col]);//CALLBACKS MODE B
 
 		//customize
 		gui_Notes->getControl(nStr)->setConfig(confg_Button);

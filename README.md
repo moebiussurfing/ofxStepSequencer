@@ -24,6 +24,7 @@ Create the example project or your own with OF ProjectGenerator as usual.
 Recommended to look at the example.
 
 
+
 ```c++
 ofApp.h:
 
@@ -57,6 +58,14 @@ SEQ.update();
 //draw()
 SEQ.draw();
 SEQ.draw_CLOCK();
+
+//-
+
+//callback receiver from sequencer
+void ofApp::Changed_SEQ_NOTES(ofAbstractParameter& e)
+{
+	...
+}
 ```
 
 

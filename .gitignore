@@ -549,3 +549,7 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+*.make
+*.plist
+*.xcconfig
+1_example_ofxStepSequencer/Makefile

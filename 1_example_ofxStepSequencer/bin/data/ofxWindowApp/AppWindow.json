@@ -1,11 +1,11 @@
 [
     {
         "position": {
-            "x": -1887.0,
-            "y": 83.0
+            "x": 0.0,
+            "y": 22.0
         },
         "size": {
-            "height": 880,
+            "height": 878,
             "width": 949
         },
         "window_mode": "OF_WINDOW"
@@ -13,8 +13,7 @@
     {
         "extra_settings": {
             "debug": "0",
-            "performance": "1",
-            "targetFps": "60",
+            "fps": "30",
             "vsync": "0"
         }
     }

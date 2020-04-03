@@ -9,8 +9,8 @@ void ofApp::setup()
 #ifdef USE_ofxWindowApp
 	//windowApp.setSettingsFps(60);
 #else
-	ofSetFrameRate(60);
-	ofSetVerticalSync(true);
+//    ofSetFrameRate(60);
+//    ofSetVerticalSync(true);
 #endif
 
 	//------------------------------------------------------

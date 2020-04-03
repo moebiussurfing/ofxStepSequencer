@@ -899,7 +899,7 @@ void ofxStepSequencer::setPlayState(bool _state)
 		{
 #ifdef USE_OFXBEATCLOCK
 			//force beatClock to ofxSeq user gui clock
-			if (beatClock.getInternalClockMode())
+			if (beatClock.getInternalClockModeState())
 			{
 				beatClock.set_DAW_bpm(bpm.get());
 			}

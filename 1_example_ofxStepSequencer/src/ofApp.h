@@ -35,18 +35,20 @@ public:
 
     //--
 
-	//CALLBACKS MODE B
-	//ofParameterGroup notes_paramsGroup;
-    //void Changed_notes_paramsGroup(ofAbstractParameter &e);
-
     ofxGui gui_Panel_Notes;
     ofxGuiContainer* gui_Notes;
 
     //--
 
-    // local notes_params to trig bang/bools trigged from sequencer
+    //local notes_params to trig bang/bools trigged from sequencer
     ofParameter<bool> notes_params[NUM_SEQ_NOTES];
 
     //callback listener for inside class ofxStepSequencer
+    //CALLBACKS MODE A
     void Changed_SEQ_NOTES(ofAbstractParameter& e);
+
+    //CALLBACKS MODE B
+    //ofParameterGroup notes_paramsGroup;
+    //void Changed_notes_paramsGroup(ofAbstractParameter &e);
+
 };

@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <ofxStepSequencer>
 	<BPM>120</BPM>
+	<LOOP_BAR>1</LOOP_BAR>
+	<startBar>4</startBar>
+	<numBars>2</numBars>
 	<SHOW_GRID>1</SHOW_GRID>
 	<SHOW_BEAT-CLOCK>1</SHOW_BEAT-CLOCK>
 	<SHOW_PRESETS>0</SHOW_PRESETS>

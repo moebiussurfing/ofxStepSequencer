@@ -1,8 +1,8 @@
 [
     {
         "position": {
-            "x": 0.0,
-            "y": 22.0
+            "x": 2532.0,
+            "y": 59.0
         },
         "size": {
             "height": 878,
@@ -13,7 +13,8 @@
     {
         "extra_settings": {
             "debug": "0",
-            "fps": "30",
+            "performance": "1",
+            "targetFps": "60.5",
             "vsync": "0"
         }
     }

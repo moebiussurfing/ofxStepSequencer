@@ -51,4 +51,5 @@ public:
     //ofParameterGroup notes_paramsGroup;
     //void Changed_notes_paramsGroup(ofAbstractParameter &e);
 
+	//-
 };

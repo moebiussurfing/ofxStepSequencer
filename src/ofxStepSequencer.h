@@ -1,8 +1,9 @@
 ///TODO:
 
-///+ maybe copy presetManager system with dataGrid class?
-
+///+ add looped variable bar size
 ///+ shift steps left rigth up down
+
+///+ maybe copy presetManager system with dataGrid class?
 
 ///+ ofxBeatClock
 ///+ add callback to play toggle linking
@@ -69,6 +70,22 @@ public:
 	void setup_gui();
 	void draw_CLOCK();
 
+	//-
+
+	//TODO:
+	///for custom grid sizes
+	void setup(int nNotes, int nBeats);
+
+private:
+	int NumSeqNotes = 12;
+	int NumSeqBeats = 16;
+
+	//-
+
+	ofParameter<bool> loopBar;
+	ofParameter<int> numBars;
+	ofParameter<int> startBar;
+	
 	//-
 
 	//API

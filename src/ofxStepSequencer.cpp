@@ -1,7 +1,10 @@
 #include "ofxStepSequencer.h"
 
+//TODO:
+//adding variable gird size feature
+
 //--------------------------------------------------------------
-void ofxStepSequencer::setup()
+void ofxStepSequencer::setup(int _NUM_SEQ_BEATS, int _NUM_SEQ_NOTES)
 {
 	ofSetLogLevel("ofxStepSequencer", OF_LOG_NOTICE);
 	ofSetLogLevel("ofxSequencer", OF_LOG_NOTICE);
@@ -20,7 +23,7 @@ void ofxStepSequencer::setup()
 
 	//ofxSequencer object
 
-	sequencer.setup(NUM_SEQ_BEATS, BPM_INIT, BARS_INIT);
+	sequencer.setup(_NUM_SEQ_BEATS, BPM_INIT, BARS_INIT);
 
 	//TODO: BUG: add step 0
 
@@ -30,7 +33,7 @@ void ofxStepSequencer::setup()
 
 	TARGET_NOTES_paramsGroup.setName("sequencer TARGET_NOTES_params");
 
-	for (int row = 0; row < NUM_SEQ_NOTES; row++)
+	for (int row = 0; row < _NUM_SEQ_NOTES; row++)
 	{
 		//target vars
 		TARGET_NOTES_params[row].set(ofToString(row), false);
@@ -57,8 +60,8 @@ void ofxStepSequencer::setup()
 	//default grid position and sizes (if setPosition not called..)
 
 	seqH = 200;
-	seqBoxSize = seqH / NUM_SEQ_NOTES;
-	seqW = seqBoxSize * NUM_SEQ_BEATS;
+	seqBoxSize = seqH / _NUM_SEQ_NOTES;
+	seqW = seqBoxSize * _NUM_SEQ_BEATS;
 	seqX = 550;
 	seqY = 500;
 	sequencer.setPosition(seqX, seqY, seqW, seqH);
@@ -191,6 +194,12 @@ void ofxStepSequencer::setup()
 	//--
 }
 
+//--------------------------------------------------------------
+void ofxStepSequencer::setup()
+{
+	setup((int)NUM_SEQ_BEATS, (int)NUM_SEQ_NOTES);
+}
+
 //---------------------------
 void ofxStepSequencer::set_SHOW_Gui(bool state)
 {
@@ -260,6 +269,9 @@ void ofxStepSequencer::setup_gui()
 	params_Transport.setName("ofxStepSequencer");
 	params_Transport.add(play_trig.set("PLAY", false));
 	params_Transport.add(bpm.set("BPM", 120, 30, 300));
+	params_Transport.add(loopBar.set("LOOP BAR", false));
+	params_Transport.add(startBar.set("startBar", 1, 1, 4));
+	params_Transport.add(numBars.set("numBars", 4, 1, 4));
 	params_Transport.add(SHOW_Grid.set("SHOW GRID", true));
 	params_Transport.add(SHOW_beatClock.set("SHOW BEAT-CLOCK", true));
 	params_Transport.add(SHOW_presetsManager.set("SHOW PRESETS", true));
@@ -282,6 +294,7 @@ void ofxStepSequencer::setup_gui()
 
 	//-
 
+	//custom theme
 	group_Transport->loadTheme("theme/theme_bleurgh.json");
 	group_HelperTools->loadTheme("theme/theme_bleurgh.json");
 
@@ -294,6 +307,7 @@ void ofxStepSequencer::setup_gui()
 
 	//--
 
+	//set visible
 	set_SHOW_Gui(SHOW_Gui);//by default
 }
 
@@ -880,20 +894,26 @@ void ofxStepSequencer::Changed_Params(ofAbstractParameter &e) //patch change
 		}
 		else if (name == "FROM BAR")
 		{
-
 		}
 		else if (name == "SHOW PRESETS")
 		{
 			presetsManager.setVisible_Gui(SHOW_presetsManager);
 			presetsManager.setVisible_ClickerPanel(SHOW_presetsManager);
 		}
+
+		else if (name == "startBar" && loopBar)
+		{
+			sequencer.reset();
+			sequencer.column = ((startBar - 1) * 4);
+		}
+		
 	}
 }
 
 //------------------------------------------------
 void ofxStepSequencer::setPlayState(bool _state)
 {
-	if (_state)
+	if (_state)//play
 	{
 		if (ENABLE_ofxBeatClock_MODE)
 		{
@@ -916,7 +936,7 @@ void ofxStepSequencer::setPlayState(bool _state)
 
 		isPlaying = true;
 	}
-	else
+	else if (!_state)//stop
 	{
 		if (ENABLE_ofxBeatClock_MODE)
 		{
@@ -1214,7 +1234,24 @@ void ofxStepSequencer::Changed_BPM_beat_current(int &value)
 
 	if (ENABLE_ofxBeatClock_MODE)
 	{
-		sequencer.advance();
+		//TODO:
+		//add variable pattern duration
+		//limited bar
+		int limit = ((startBar - 1) * 4) + (numBars * 4 - 1);
+		if (limit > 16)
+			limit = 15;
+
+		if (sequencer.getColumn() >= limit && loopBar)
+		{
+			sequencer.column = (startBar-1)*4;
+			//sequencer.column = 0;
+			//sequencer.stop();
+			//sequencer.start();
+		}
+		else//still remains bars
+		{
+			sequencer.advance();
+		}
 	}
 }
 

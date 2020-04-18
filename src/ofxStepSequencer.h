@@ -1,9 +1,8 @@
 ///TODO:
 
-///+ add looped variable bar size
-///+ shift steps left rigth up down
-
-///+ maybe copy presetManager system with dataGrid class?
+///+ helper to shift steps left rigth up down
+///+ variable pattern beat and note sizes
+///+ improve performance using fbo to only refesh when grid preview changes
 
 ///+ ofxBeatClock
 ///+ add callback to play toggle linking
@@ -11,7 +10,7 @@
 ///+ add buffer clock besides timer
 ///+ re sync trig
 
-///+ monitor too triggered notes from outside (OSC/API) to the grid cells
+///+ monitor too (cell blinks) triggered notes from outside (OSC/API) to the grid cells
 ///+ helpers to set widgets/panels layout
 
 //----------------------------------------------------------
@@ -55,7 +54,7 @@ class ofxStepSequencer
 public:
 
 	//debug cols and transport
-	bool DEBUG_state = false;
+	bool DEBUG_state = true;
 
 	ofxStepSequencer() {}
 	~ofxStepSequencer() {}
@@ -85,7 +84,21 @@ private:
 	ofParameter<bool> loopBar;
 	ofParameter<int> numBars;
 	ofParameter<int> startBar;
-	
+
+public:
+	void setLoopBarMode(bool b)
+	{
+		loopBar = b;
+	}
+	void setNumBarMode(int i)
+	{
+		numBars = i;
+	}
+	void setStartBar(int i)
+	{
+		startBar = i;
+	}
+
 	//-
 
 	//API

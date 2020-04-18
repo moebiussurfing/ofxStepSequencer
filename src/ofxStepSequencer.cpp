@@ -76,6 +76,8 @@ void ofxStepSequencer::setup(int _NUM_SEQ_BEATS, int _NUM_SEQ_NOTES)
 
 	//FBO IMPROVE DRAW PERFORMANCE
 
+	//TODO:
+	//do the draw on refresh only code..
 	useFbo = false;
 	fbo.allocate(seqW, seqH);
 	fbo.begin();
@@ -487,6 +489,7 @@ void ofxStepSequencer::redraw()
 	int charW = 23;
 	int x, y;
 
+	//note labels
 	for (int i = 0; i < NUM_SEQ_NOTES; i++)
 	{
 		if (i < 9)
@@ -569,14 +572,18 @@ void ofxStepSequencer::draw()//draw sequencer grid
 			ofNoFill();
 			ofDrawRectangle(seqX - 1, seqY - 1, seqW + 1, seqH + 1);
 
-			//2. the 3 bar vertical lines
+			//-
+
+			//2. the 3 bar vertical lines (between 4 bars dividers)
 
 			ofSetLineWidth(2);//vertical bar lines
 			ofDrawLine(seqX + seqW / 4, seqY, seqX + seqW / 4, seqY + seqH);
 			ofDrawLine(seqX + seqW / 2, seqY, seqX + seqW / 2, seqY + seqH);
 			ofDrawLine(seqX + seqW * 3 / 4, seqY, seqX + seqW * 3 / 4, seqY + seqH);
 
-			//3. selected bar transparent rectangle
+			//-
+
+			//3.1 selected current player bar/position transparent rectangle
 
 			int xBar, yBar, wBar, hBar;
 			wBar = seqW / 4;
@@ -590,6 +597,34 @@ void ofxStepSequencer::draw()//draw sequencer grid
 			ofSetColor(c.r, c.g, c.b, alpha);
 			ofFill();
 			ofDrawRectangle(xBar, yBar, wBar, hBar);
+
+			//-
+
+			if (loopBar)
+			{
+				//3.2 make darken the bar out of the defined bar loop
+				alpha = 148;
+				int widthLoop;
+				c.set(8);
+				ofSetColor(c.r, c.g, c.b, alpha);
+
+				//right rectangle
+				xBar = seqX + wBar * (startBar - 1 + numBars);//from end
+				//int limitBars = ;
+				if (startBar + numBars <= 4)
+				{
+					widthLoop = wBar * (4 - (startBar - 1 + numBars));
+					ofDrawRectangle(xBar, yBar, widthLoop, hBar);
+				}
+
+				//left rectangle
+				if (startBar > 1)
+				{
+					xBar = seqX;//first to start
+					widthLoop = wBar * (startBar - 1);
+					ofDrawRectangle(xBar, yBar, widthLoop, hBar);
+				}
+			}
 
 			//-
 
@@ -866,8 +901,8 @@ void ofxStepSequencer::Changed_Params(ofAbstractParameter &e) //patch change
 			{
 				clear_trig = false;
 				clear();
-			}
 		}
+	}
 		else if (name == "BPM")
 		{
 #ifndef USE_OFXBEATCLOCK
@@ -894,6 +929,7 @@ void ofxStepSequencer::Changed_Params(ofAbstractParameter &e) //patch change
 		}
 		else if (name == "FROM BAR")
 		{
+			//sequencer.
 		}
 		else if (name == "SHOW PRESETS")
 		{
@@ -901,13 +937,23 @@ void ofxStepSequencer::Changed_Params(ofAbstractParameter &e) //patch change
 			presetsManager.setVisible_ClickerPanel(SHOW_presetsManager);
 		}
 
+		//variable bar duration
 		else if (name == "startBar" && loopBar)
 		{
 			sequencer.reset();
 			sequencer.column = ((startBar - 1) * 4);
+			//sequencer.setStartBar(startBar);
 		}
-		
-	}
+		else if (name == "numBars" && loopBar)
+		{
+			//sequencer.setNumBarMode(numBars);
+		}
+		else if (name == "LOOP BAR")
+		{
+			//sequencer.setLoopBarMode(loopBar);
+		}
+
+}
 }
 
 //------------------------------------------------
@@ -922,6 +968,13 @@ void ofxStepSequencer::setPlayState(bool _state)
 			if (beatClock.getInternalClockModeState())
 			{
 				beatClock.set_DAW_bpm(bpm.get());
+			}
+
+			//TODO:
+			if (loopBar)
+			{
+				//sequencer.reset();
+				sequencer.column = ((startBar - 1) * 4) - 1;//-1 to avoid bug
 			}
 
 			//sequencer.column = 0;
@@ -949,6 +1002,16 @@ void ofxStepSequencer::setPlayState(bool _state)
 			sequencer.stop();
 			sequencer.reset();
 
+			//TODO:
+			if (loopBar)
+			{
+				//sequencer.reset();
+				sequencer.column = ((startBar - 1) * 4) - 1;//-1 to avoid bug
+			}
+			//else
+			//{
+			//	sequencer.column = -1;//?
+			//}
 			ofLogNotice("ofxStepSequencer") << "sequencer.column = " << sequencer.column;
 		}
 		else
@@ -1243,7 +1306,7 @@ void ofxStepSequencer::Changed_BPM_beat_current(int &value)
 
 		if (sequencer.getColumn() >= limit && loopBar)
 		{
-			sequencer.column = (startBar-1)*4;
+			sequencer.column = (startBar - 1) * 4;
 			//sequencer.column = 0;
 			//sequencer.stop();
 			//sequencer.start();

@@ -53,6 +53,15 @@ class ofxStepSequencer
 
 public:
 
+	void resetClock()
+	{
+		if (isPlaying)
+		{
+		beatClock.RESET_clockValues();
+		beatClock.PLAYER_START();
+		}
+	};
+	
 	//debug cols and transport
 	bool DEBUG_state = true;
 

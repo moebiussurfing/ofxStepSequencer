@@ -603,7 +603,7 @@ void ofxStepSequencer::draw()//draw sequencer grid
 			if (loopBar)
 			{
 				//3.2 make darken the bar out of the defined bar loop
-				alpha = 148;
+				alpha = 164;
 				int widthLoop;
 				c.set(8);
 				ofSetColor(c.r, c.g, c.b, alpha);
@@ -937,6 +937,8 @@ void ofxStepSequencer::Changed_Params(ofAbstractParameter &e) //patch change
 			presetsManager.setVisible_ClickerPanel(SHOW_presetsManager);
 		}
 
+		//-
+
 		//variable bar duration
 		else if (name == "startBar" && loopBar)
 		{
@@ -950,6 +952,18 @@ void ofxStepSequencer::Changed_Params(ofAbstractParameter &e) //patch change
 		}
 		else if (name == "LOOP BAR")
 		{
+			if (!loopBar)
+			{
+				//sequencer.stop();
+				//sequencer.reset();
+				//resetClock();
+			}
+			else
+			{
+				//sequencer.stop();
+				sequencer.column = ((startBar - 1) * 4) - 1;//-1 to avoid bug
+				//resetClock();
+			}
 			//sequencer.setLoopBarMode(loopBar);
 		}
 

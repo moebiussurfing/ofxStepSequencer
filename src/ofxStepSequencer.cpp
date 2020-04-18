@@ -141,6 +141,9 @@ void ofxStepSequencer::setup(int _NUM_SEQ_BEATS, int _NUM_SEQ_NOTES)
 	//get beat ticks events from outside the class
 	beatClock.BPM_beat_current.addListener(this, &ofxStepSequencer::Changed_BPM_beat_current);
 
+	//check changes on beatClock bpm
+	beatClock.BPM_Global.addListener(this, &ofxStepSequencer::Changed_BeatClock_BPM);
+
 #endif
 
 	//--
@@ -270,7 +273,7 @@ void ofxStepSequencer::setup_gui()
 
 	params_Transport.setName("ofxStepSequencer");
 	params_Transport.add(play_trig.set("PLAY", false));
-	params_Transport.add(bpm.set("BPM", 120, 30, 300));
+	params_Transport.add(bpm.set("BPM", 120.0f, 30.0f, 400.0f));
 	params_Transport.add(loopBar.set("LOOP BAR", false));
 	params_Transport.add(startBar.set("startBar", 1, 1, 4));
 	params_Transport.add(numBars.set("numBars", 4, 1, 4));
@@ -603,7 +606,7 @@ void ofxStepSequencer::draw()//draw sequencer grid
 			if (loopBar)
 			{
 				//3.2 make darken the bar out of the defined bar loop
-				alpha = 164;
+				alpha = 192;
 				int widthLoop;
 				c.set(8);
 				ofSetColor(c.r, c.g, c.b, alpha);
@@ -978,11 +981,11 @@ void ofxStepSequencer::setPlayState(bool _state)
 		if (ENABLE_ofxBeatClock_MODE)
 		{
 #ifdef USE_OFXBEATCLOCK
-			//force beatClock to ofxSeq user gui clock
-			if (beatClock.getInternalClockModeState())
-			{
-				beatClock.set_DAW_bpm(bpm.get());
-			}
+			////force beatClock to ofxSeq user gui clock
+			//if (beatClock.getInternalClockModeState())
+			//{
+			//	beatClock.set_DAW_bpm(bpm.get());
+			//}
 
 			//TODO:
 			if (loopBar)
@@ -1067,6 +1070,12 @@ void ofxStepSequencer::exit()
 {
 #ifdef USE_OFXBEATCLOCK
 	beatClock.exit();
+
+	//get beat ticks events from outside the class
+	beatClock.BPM_beat_current.removeListener(this, &ofxStepSequencer::Changed_BPM_beat_current);
+
+	//check changes on beatClock bpm
+	beatClock.BPM_Global.removeListener(this, &ofxStepSequencer::Changed_BeatClock_BPM);
 #endif
 
 	//-
@@ -1303,6 +1312,14 @@ void ofxStepSequencer::setGRID_square(int note, int beat, bool state)
 }
 
 #ifdef USE_OFXBEATCLOCK
+
+//--------------------------------------------------------------
+void ofxStepSequencer::Changed_BeatClock_BPM(float & value)
+{
+	ofLogVerbose("ofxStepSequencer") << "Changed_BeatClock_BPM: " << value;
+
+	bpm = value;
+}
 
 //--------------------------------------------------------------
 void ofxStepSequencer::Changed_BPM_beat_current(int &value)

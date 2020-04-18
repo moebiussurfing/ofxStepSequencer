@@ -63,7 +63,7 @@ public:
 	};
 	
 	//debug cols and transport
-	bool DEBUG_state = true;
+	bool DEBUG_state = false;
 
 	ofxStepSequencer() {}
 	~ofxStepSequencer() {}
@@ -290,6 +290,7 @@ private:
 public:
 	ofxBeatClock beatClock;
 	void Changed_BPM_beat_current(int & value);
+	void Changed_BeatClock_BPM(float & value);
 #endif
 
 private:

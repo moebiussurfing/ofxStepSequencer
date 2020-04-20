@@ -212,6 +212,8 @@ void ofxStepSequencer::set_SHOW_Gui(bool state)
 	gui_SEQ.getVisible().set(SHOW_Gui);
 
 	presetsManager.setVisible_Gui(SHOW_Gui);
+
+	//sequencer.setVisible(SHOW_Gui);
 }
 
 //---------------------------
@@ -606,6 +608,7 @@ void ofxStepSequencer::draw()//draw sequencer grid
 			if (loopBar)
 			{
 				//3.2 make darken the bar out of the defined bar loop
+
 				alpha = 192;
 				int widthLoop;
 				c.set(8);

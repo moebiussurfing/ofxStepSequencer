@@ -553,3 +553,6 @@ MigrationBackup/
 *.plist
 *.xcconfig
 1_example_ofxStepSequencer/Makefile
+1_example_ofxStepSequencer/bin/data/ofxBeatClock/settings/BeatClock_Settings.xml
+1_example_ofxStepSequencer/bin/data/ofxStepSequencer/presetsControl.xml
+1_example_ofxStepSequencer/bin/data/ofxStepSequencer/settings.xml

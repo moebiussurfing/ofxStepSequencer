@@ -126,6 +126,18 @@ public:
 	//{
 	//	bBallAutoPos = b;
 	//}
+	float getHeight_GridSequencer()
+	{
+		return seqH;
+	}
+	float getWidth_GridSequencer()
+	{
+		return seqW;
+	}
+	glm::vec2 getPosition_GridSequencer()
+	{
+		return (glm::vec2(seqX, seqY));
+	}
 #endif
 
 	bool getPlayState();
@@ -182,6 +194,12 @@ public:
 
 	//TODO: make functionm to refresh when listens preset manager changes..
 	//void GRID_set_Sequencer_From_DATA_class();
+
+	void setGRID_visible(bool b)
+	{
+		//sequencer.setVisible(b);
+		SHOW_Grid = b;
+	};
 
 	//--
 

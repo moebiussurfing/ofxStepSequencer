@@ -57,7 +57,7 @@ public:
 	{
 		if (isPlaying)
 		{
-		beatClock.RESET_clockValues();
+		beatClock.Reset_clockValuesAndStop();
 		beatClock.PLAYER_START();
 		}
 	};

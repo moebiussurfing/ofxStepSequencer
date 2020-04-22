@@ -1,7 +1,7 @@
 #include "ofxStepSequencer.h"
 
 //TODO:
-//adding variable gird size feature
+//adding variable grid size (notes & steps) feature
 
 //--------------------------------------------------------------
 void ofxStepSequencer::setup(int _NUM_SEQ_BEATS, int _NUM_SEQ_NOTES)

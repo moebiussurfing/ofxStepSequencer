@@ -7,10 +7,10 @@ void ofApp::setup()
 	ofSetLogLevel("ofApp", OF_LOG_NOTICE);
 
 #ifdef USE_ofxWindowApp
-	//windowApp.setSettingsFps(60);
+	windowApp.setSettingsFps(60);//onlty required on first use, before xml is present
 #else
-//    ofSetFrameRate(60);
-//    ofSetVerticalSync(true);
+    ofSetFrameRate(60);
+    ofSetVerticalSync(true);
 #endif
 
 	//------------------------------------------------------
@@ -23,7 +23,7 @@ void ofApp::setup()
 
 	//LOCAL TARGET NOTES PARAMS (toggle bools) & GUI MONITOR
 
-	//customize
+	//optional customize
 	ofJson confg_Cont =
 	{
 		{"width", 40}
@@ -45,25 +45,29 @@ void ofApp::setup()
 
 	//--
 
-	//ofApp local toggles
+	//ofApp local params. bool/toggles target receivers from sequencer
 	for (int col = 0; col < NUM_SEQ_NOTES; col++)
 	{
+		//define param
 		string nStr = ofToString(col + 1);
 		notes_params[col].set(nStr, false);
+
+		//add param to gui panel
 		gui_Notes->add<ofxGuiToggle>(notes_params[col]);
 		//notes_paramsGroup.add(notes_params[col]);//CALLBACKS MODE B
 
-		//customize
+		//customize added button
 		gui_Notes->getControl(nStr)->setConfig(confg_Button);
 	}
 
+	//layout and theme
 	gui_Notes->setPosition(880, 10);
 	gui_Notes->loadTheme("theme/theme_bleurgh.json");
 
 	//--
 
 	//CALLBACKS MODE A:
-	//listener to directly check inside class ofxStepSequencer
+	//listener to directly check inside class ofxStepSequencer and receive states
 	ofAddListener(SEQ.TARGET_NOTES_paramsGroup.parameterChangedE(), this, &ofApp::Changed_SEQ_NOTES);
 
 	//--
@@ -90,18 +94,20 @@ void ofApp::SEQ_Gui_Customize()
 	int ball_radius = 30;
 	int px = 5;
 	int py = 5;
-	SEQ.setPosition_CLOCK_Gui(px, py, squares_w);
-	SEQ.setPosition_CLOCK_Squares(px, py + 600, squares_w);//beat squares
-	SEQ.setPosition_CLOCK_Ball(px + squares_w * 0.5 - ball_radius, py + 800, ball_radius);//beat ball
+	SEQ.setPosition_CLOCK_Gui(px, py, squares_w);//main gui. titled as 'ofxStepSequencer'
+	SEQ.setPosition_CLOCK_Squares(px, py + 630, squares_w);//beat squares
+	SEQ.setPosition_CLOCK_Ball(px + squares_w * 0.5 - ball_radius, py + 830, ball_radius);//beat ball for visual feedback
 
 	//PRESET MANAGER
-	//SEQ.presetsManager.set_pathKit_Folder("patterns/kit_1");//startup buggy..
-	SEQ.presetsManager.set_GUI_position(465, 350 + grid_w / 9 + 10);//default
-	SEQ.presetsManager.setPosition_ClickerPanel(465, 350, grid_w / 9);//default
-	SEQ.presetsManager.setVisible_ClickerPanel(true);//default
-	SEQ.presetsManager.setVisible_Gui(true);//default
+	SEQ.presetsManager.set_GUI_position(465, 350 + grid_w / 9 + 10);//gui titled as 'SEQ PATTERNS'
+	SEQ.presetsManager.setPosition_ClickerPanel(465, 350, grid_w / 9);//mouse clicker preset selector
+	SEQ.presetsManager.setVisible_ClickerPanel(true);//show
+	SEQ.presetsManager.setVisible_Gui(true);//show
 
 	//-
+
+	//TODO: customize data folder. startup buggy..
+	//SEQ.presetsManager.set_pathKit_Folder("patterns/kit_1");
 
 	//load last GRID settings
 	//path = "SEQ_default.json";
@@ -117,8 +123,8 @@ void ofApp::update()
 //--------------------------------------------------------------
 void ofApp::draw()
 {
-	SEQ.draw();
-	SEQ.draw_CLOCK();
+	SEQ.draw();//grid sequencer
+	SEQ.draw_CLOCK();//visual feedback: beat ball, beat squares and text info
 }
 
 //--------------------------------------------------------------
@@ -137,19 +143,12 @@ void ofApp::keyPressed(int key)
 	switch (key)
 	{
 
+		//transport control
 	case ' ':
 	{
 		SEQ.togglePlayStop();
 	}
 	break;
-
-	case ',':
-		SEQ.randomize();
-		break;
-
-	case '.':
-		SEQ.clear();
-		break;
 
 	case OF_KEY_LEFT:
 		SEQ.sequencer.stepBack();
@@ -164,6 +163,15 @@ void ofApp::keyPressed(int key)
 		SEQ.beatClock.Tap_Trig();
 		break;
 #endif
+
+	//helpers
+	case ',':
+		SEQ.randomize();
+		break;
+
+	case '.':
+		SEQ.clear();
+		break;
 
 	default:
 		break;

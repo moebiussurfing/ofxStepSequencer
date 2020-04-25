@@ -57,8 +57,8 @@ public:
 	{
 		if (isPlaying)
 		{
-		beatClock.Reset_clockValuesAndStop();
-		beatClock.PLAYER_START();
+		beatClock.reset_clockValuesAndStop();
+		beatClock.start();
 		}
 	};
 	
@@ -118,6 +118,8 @@ public:
 	void setPosition_Gui(int x, int y);
 
 #ifdef USE_OFXBEATCLOCK
+	void setPosition_BeatClock(int x, int y);//main global position setter
+	//optional to customize
 	void setPosition_CLOCK_Gui(int x, int y, int w);
 	void setPosition_CLOCK_Squares(int x, int y, int w);
 	void setPosition_CLOCK_Ball(int x, int y, int w);

@@ -90,13 +90,15 @@ void ofApp::SEQ_Gui_Customize()
 	SEQ.setPosition_Gui(220, 5);
 
 	//BEAT CLOCK TRANSPORT
+	SEQ.setPosition_BeatClock(5, 5);
+
 	int squares_w = 200;
 	int ball_radius = 30;
 	int px = 5;
 	int py = 5;
-	SEQ.setPosition_CLOCK_Gui(px, py, squares_w);//main gui. titled as 'ofxStepSequencer'
-	SEQ.setPosition_CLOCK_Squares(px, py + 630, squares_w);//beat squares
-	SEQ.setPosition_CLOCK_Ball(px + squares_w * 0.5 - ball_radius, py + 830, ball_radius);//beat ball for visual feedback
+	//SEQ.setPosition_CLOCK_Gui(px, py, squares_w);//main gui. titled as 'ofxStepSequencer'
+	//SEQ.setPosition_CLOCK_Squares(px, py + 630, squares_w);//beat squares
+	//SEQ.setPosition_CLOCK_Ball(px + squares_w * 0.5 - ball_radius, py + 830, ball_radius);//beat ball for visual feedback
 
 	//PRESET MANAGER
 	SEQ.presetsManager.set_GUI_position(465, 350 + grid_w / 9 + 10);//gui titled as 'SEQ PATTERNS'
@@ -160,7 +162,7 @@ void ofApp::keyPressed(int key)
 
 #ifdef USE_OFXBEATCLOCK
 	case 't':
-		SEQ.beatClock.Tap_Trig();
+		SEQ.beatClock.tap_Trig();
 		break;
 #endif
 

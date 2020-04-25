@@ -139,7 +139,7 @@ void ofxStepSequencer::setup(int _NUM_SEQ_BEATS, int _NUM_SEQ_NOTES)
 	//-
 
 	//get beat ticks events from outside the class
-	beatClock.BPM_beat_current.addListener(this, &ofxStepSequencer::Changed_BPM_beat_current);
+	beatClock.Beat_current.addListener(this, &ofxStepSequencer::Changed_BPM_beat_current);
 
 	//check changes on beatClock bpm
 	beatClock.BPM_Global.addListener(this, &ofxStepSequencer::Changed_BeatClock_BPM);
@@ -418,9 +418,15 @@ void ofxStepSequencer::setPosition_Gui(int x, int y)
 #ifdef USE_OFXBEATCLOCK
 
 //--------------------------------------
+void ofxStepSequencer::setPosition_BeatClock(int x, int y)
+{
+	beatClock.setPosition_GuiGlobal(x, y);
+}
+
+//--------------------------------------
 void ofxStepSequencer::setPosition_CLOCK_Gui(int x, int y, int w)
 {
-	beatClock.setPosition_Gui(x, y, w);
+	beatClock.setPosition_GuiPanel(x, y, w);
 }
 
 //--------------------------------------
@@ -914,15 +920,15 @@ void ofxStepSequencer::Changed_Params(ofAbstractParameter &e) //patch change
 #ifndef USE_OFXBEATCLOCK
 			sequencer.setBpm(bpm);
 #else
-			beatClock.set_DAW_bpm(bpm);
+			beatClock.setBpm_ClockInternal(bpm);
 #endif
 		}
 
 #ifdef USE_OFXBEATCLOCK
 		else if (name == "SHOW BEAT-CLOCK")
 		{
-			beatClock.set_Gui_visible(SHOW_beatClock);
-			beatClock.set_BeatBall_visible(SHOW_beatClock);
+			beatClock.setVisible_GuiPanel(SHOW_beatClock);
+			beatClock.setVisible_BeatBall(SHOW_beatClock);
 		}
 #endif
 		else if (name == "CLONE BARS")
@@ -998,7 +1004,7 @@ void ofxStepSequencer::setPlayState(bool _state)
 			}
 
 			//sequencer.column = 0;
-			beatClock.PLAYER_START();
+			beatClock.start();
 #endif
 		}
 		else
@@ -1015,7 +1021,7 @@ void ofxStepSequencer::setPlayState(bool _state)
 		{
 
 #ifdef USE_OFXBEATCLOCK
-			beatClock.PLAYER_STOP();
+			beatClock.stop();
 #endif
 			//-
 
@@ -1075,7 +1081,7 @@ void ofxStepSequencer::exit()
 	beatClock.exit();
 
 	//get beat ticks events from outside the class
-	beatClock.BPM_beat_current.removeListener(this, &ofxStepSequencer::Changed_BPM_beat_current);
+	beatClock.Beat_current.removeListener(this, &ofxStepSequencer::Changed_BPM_beat_current);
 
 	//check changes on beatClock bpm
 	beatClock.BPM_Global.removeListener(this, &ofxStepSequencer::Changed_BeatClock_BPM);

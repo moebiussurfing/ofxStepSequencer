@@ -57,7 +57,7 @@ public:
 	{
 		if (isPlaying)
 		{
-		beatClock.reset_clockValuesAndStop();
+		beatClock.reset_ClockValues();
 		beatClock.start();
 		}
 	};

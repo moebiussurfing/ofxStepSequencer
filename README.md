@@ -83,19 +83,15 @@ void ofApp::Changed_SEQ_NOTES(ofAbstractParameter& e)
 
 ## Requeriments
 
-https://github.com/moebiussurfing/ofxSequencer (fork)  
 https://github.com/moebiussurfing/ofxBeatClock  
 https://github.com/danomatika/ofxMidi  
 https://github.com/castovoid/ofxDawMetro  
-https://github.com/moebiussurfing/ofxPresetDataGrid  
 https://github.com/2bbb/ofxJsonUtils  
 https://github.com/moebiussurfing/ofxGuiExtended2 (fork)
-
 
 Included on the example but not mandatory:  
 Optional to handle window settings between sessions:  
 https://github.com/moebiussurfing/ofxWindowApp  
-https://github.com/bakercp/ofxSerializer
 
 
 

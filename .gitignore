@@ -49,6 +49,7 @@ icon.rc
 *.sln
 *.filters
 *.user
+*.exp
 
 #vs2017
 *.sln
@@ -549,11 +550,3 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-*.make
-*.plist
-*.xcconfig
-1_example_ofxStepSequencer/Makefile
-1_example_ofxStepSequencer/bin/data/ofxBeatClock/settings/BeatClock_Settings.xml
-1_example_ofxStepSequencer/bin/data/ofxStepSequencer/presetsControl.xml
-1_example_ofxStepSequencer/bin/data/ofxStepSequencer/settings.xml
-1_example_ofxStepSequencer/bin/1_example_ofxStepSequencer.exp

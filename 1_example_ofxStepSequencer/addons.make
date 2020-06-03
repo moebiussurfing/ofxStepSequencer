@@ -4,9 +4,6 @@ ofxGui
 ofxGuiExtended2
 ofxJsonUtils
 ofxMidi
-ofxPresetDataGrid
-ofxSequencer
 ofxSerializer
 ofxStepSequencer
 ofxWindowApp
-ofxXmlSettings
